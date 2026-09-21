@@ -122,7 +122,7 @@ def main() -> int:
     # 2. Cities -> IATA, keep monitored basket only (validated against DB)
     eco["route_code"] = (eco["source_city"].map(CITY_TO_IATA)
                          + "-" + eco["destination_city"].map(CITY_TO_IATA))
-    env = load_env(ROOT / ".env.local")
+    env = load_env(ROOT / ".env")
     conn = connect(env)
     try:
         with conn.cursor() as cur:
