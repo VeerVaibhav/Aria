@@ -33,7 +33,6 @@ export default function DashboardClient({ data }: { data: DashboardData }) {
   const { t } = useLanguage();
   const [activeView, setActiveView] = useState<string>("home");
   const [activeTab, setActiveTab] = useState<TabId>("overview");
-  const [isCopilotOpen, setIsCopilotOpen] = useState<boolean>(false);
 
   const tabs: { id: TabId; labelKey: keyof typeof i18n.en; icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }> }[] = [
     { id: "overview", labelKey: "tabOverview", icon: Activity },
@@ -51,11 +50,7 @@ export default function DashboardClient({ data }: { data: DashboardData }) {
       {/* 2. Main Shell Layout: Sidebar + Canvas Content */}
       <div className="flex flex-1">
         {/* Dark Enterprise Sidebar */}
-        <Sidebar
-          activeView={activeView}
-          onSelectView={setActiveView}
-          onOpenCopilot={() => setIsCopilotOpen(true)}
-        />
+        <Sidebar activeView={activeView} onSelectView={setActiveView} />
 
         {/* Dynamic Canvas Container */}
         <main id="main-content" className="flex-1 px-4 py-6 md:px-6">
@@ -85,7 +80,7 @@ export default function DashboardClient({ data }: { data: DashboardData }) {
                 <HeroMetricCards data={data} />
 
                 {/* 5-Tab Command Center Navigation Bar */}
-                <nav aria-label="Command Center Modules" className="civic-card p-1.5" style={{ background: "var(--page-bg)" }}>
+                <nav aria-label={t("commandModules")} className="civic-card p-1.5" style={{ background: "var(--page-bg)" }}>
                   <ul className="flex flex-wrap items-center gap-1" role="tablist">
                     {tabs.map((tab) => {
                       const isActive = activeTab === tab.id;
@@ -180,8 +175,7 @@ export default function DashboardClient({ data }: { data: DashboardData }) {
         </main>
       </div>
 
-      {/* 3. Slide-Over AI Policy Copilot Drawer */}
-      <PolicyCopilot isOpen={isCopilotOpen} onClose={() => setIsCopilotOpen(false)} />
+      <PolicyCopilot />
 
       {/* 4. Institutional Footer */}
       <SiteFooter />

@@ -1,30 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Clock, Code, Contrast, Languages, Radio } from "lucide-react";
+import { Clock, Code, Contrast, Radio } from "lucide-react";
 import { useLanguage } from "@/lib/language";
 
-function EmblemPlaceholder() {
+function AriaMark() {
   return (
-    <svg
-      viewBox="0 0 48 48"
-      className="h-10 w-10 shrink-0"
-      role="img"
-      aria-label="Emblem of India"
+    <div
+      className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-amber-500 text-lg font-black text-slate-950"
+      aria-hidden
     >
-      <circle cx="24" cy="24" r="23" fill="#FF9933" />
-      <circle cx="24" cy="24" r="19.5" fill="none" stroke="#0B3C5D" strokeWidth="1.4" />
-      <rect x="12" y="33" width="24" height="3.4" rx="0.8" fill="#0B3C5D" />
-      <path
-        d="M17 33c0-6 1.6-10.5 4.6-13.2 1-0.9 1.9-2.2 2.1-3.6l0.4-2.4 1.8 1.2 1.8-1.2 0.4 2.4c0.2 1.4 1.1 2.7 2.1 3.6 3 2.7 4.6 7.2 4.6 13.2z"
-        fill="#0B3C5D"
-      />
-      <path d="M13.2 33c0.2-4.2 1.1-7.4 2.6-9.6 0.4 3.2 0.4 6.6 0.2 9.6z" fill="#0B3C5D" opacity="0.75" />
-      <path d="M34.8 33c-0.2-4.2-1.1-7.4-2.6-9.6-0.4 3.2-0.4 6.6-0.2 9.6z" fill="#0B3C5D" opacity="0.75" />
-      <text x="24" y="44.4" textAnchor="middle" fontSize="5.2" fill="#0B3C5D" fontWeight="700">
-        सत्यमेव
-      </text>
-    </svg>
+      A
+    </div>
   );
 }
 
@@ -35,16 +22,17 @@ export default function SiteHeader() {
   const [highContrast, setHighContrast] = useState<boolean>(false);
 
   useEffect(() => {
+    const locale = lang === "hi" ? "hi-IN" : "en-IN";
     const updateTime = () => {
       const now = new Date();
       setClockStr(
-        now.toLocaleTimeString("en-IN", {
+        now.toLocaleTimeString(locale, {
           hour12: false,
           timeZone: "Asia/Kolkata",
         }) + " IST"
       );
       setTodayStr(
-        now.toLocaleDateString("en-IN", {
+        now.toLocaleDateString(locale, {
           year: "numeric",
           month: "short",
           day: "numeric",
@@ -55,7 +43,7 @@ export default function SiteHeader() {
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [lang]);
 
   const applyContrast = (on: boolean) => {
     setHighContrast(on);
@@ -72,7 +60,7 @@ export default function SiteHeader() {
       <div className="mx-auto flex flex-wrap items-center justify-between gap-4 px-4 py-3">
         {/* Left Branding */}
         <div className="flex items-center gap-3">
-          <EmblemPlaceholder />
+          <AriaMark />
           <div>
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "#FF9933" }}>
@@ -80,7 +68,7 @@ export default function SiteHeader() {
               </span>
               <span className="text-[10px] opacity-60" style={{ color: "var(--header-text)" }}>•</span>
               <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.85)" }}>
-                MoSPI / NSO
+                {t("subDivision")}
               </span>
             </div>
             <h1 className="text-base font-bold leading-tight" style={{ color: "var(--header-text)" }}>
@@ -103,7 +91,7 @@ export default function SiteHeader() {
           {/* Data Freshness Badge */}
           {todayStr && (
             <span className="hidden text-xs font-medium md:inline-block" style={{ color: "rgba(255,255,255,0.85)" }}>
-              Data as of {todayStr}
+              {t("dataAsOf").replace("{date}", todayStr)}
             </span>
           )}
 

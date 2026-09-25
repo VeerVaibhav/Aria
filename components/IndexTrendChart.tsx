@@ -35,7 +35,7 @@ export default function IndexTrendChart({ series }: { series: IndexPoint[] }) {
           <YAxis domain={[min, max]} tick={{ fontSize: 11, fill: pal.tick }} tickLine={false} width={44} />
           <Tooltip
             contentStyle={{ border: "1px solid #cbd5e1", borderRadius: 2, fontSize: 12 }}
-            formatter={(value: number) => [value.toFixed(2), "APIx"]}
+            formatter={(value: number) => [value.toFixed(2), "ARIA"]}
           />
           <ReferenceLine y={100} stroke={pal.dashedRef} strokeDasharray="4 4" label={{ value: t("chartBaseLabel"), fontSize: 10, fill: pal.tick, position: "insideBottomRight" }} />
           <Line type="monotone" dataKey="apix" stroke={pal.primary} strokeWidth={2} dot={false} isAnimationActive={false} />

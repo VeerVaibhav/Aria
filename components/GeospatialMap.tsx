@@ -150,10 +150,10 @@ export default function GeospatialMap({ heatmap }: { heatmap: DashboardData["hea
   ];
 
   const topMovers = [
-    { route: "Mumbai ➔ New Delhi", code: "BOM-DEL", pct: 19.9, up: true, fare: "₹6,425" },
-    { route: "New Delhi ➔ Pune", code: "DEL-PNQ", pct: 16.4, up: true, fare: "₹7,150" },
-    { route: "Kolkata ➔ New Delhi", code: "CCU-DEL", pct: -15.7, up: false, fare: "₹5,490" },
-    { route: "Bengaluru ➔ Mumbai", code: "BOM-BLR", pct: 11.2, up: true, fare: "₹4,850" },
+    { route: t("routeBomDel"), code: "BOM-DEL", pct: 19.9, up: true, fare: "₹6,425" },
+    { route: t("routeDelPnq"), code: "DEL-PNQ", pct: 16.4, up: true, fare: "₹7,150" },
+    { route: t("routeCcuDel"), code: "CCU-DEL", pct: -15.7, up: false, fare: "₹5,490" },
+    { route: t("routeBlrBom"), code: "BOM-BLR", pct: 11.2, up: true, fare: "₹4,850" },
   ];
 
   const getPathColor = (changePct: number) => {
@@ -182,13 +182,13 @@ export default function GeospatialMap({ heatmap }: { heatmap: DashboardData["hea
 
         <div className="flex items-center gap-4 text-xs font-semibold">
           <span className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-red-600"></span> High Surge (&gt;+15%)
+            <span className="h-2.5 w-2.5 rounded-full bg-red-600"></span> {t("legendHigh")}
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-amber-500"></span> Moderate (+5..14%)
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-500"></span> {t("legendModerate")}
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-green-600"></span> Stable (&lt;+5%)
+            <span className="h-2.5 w-2.5 rounded-full bg-green-600"></span> {t("legendStable")}
           </span>
         </div>
       </div>
@@ -197,14 +197,16 @@ export default function GeospatialMap({ heatmap }: { heatmap: DashboardData["hea
         {/* SVG Vector Map Canvas */}
         <div className="relative col-span-2 flex items-center justify-center rounded border p-3 shadow-inner" style={{ borderColor: "var(--card-border)", background: hc ? "#000000" : "#f8fafc" }}>
           <svg viewBox="0 0 600 650" className="h-[480px] w-full drop-shadow">
-            {/* Precise Geographical Outline Path of India (Including Jammu & Kashmir and Ladakh Crown) */}
+            {/* India outline with official J&K + Ladakh crown (Gilgit–Baltistan, Karakoram, Aksai Chin) */}
             <path
-              d="M 184.5,25.0 L 197.3,29.1 L 208.3,39.3 L 221.2,49.5 L 234.0,55.6
-                 L 246.8,61.7 L 252.3,76.0 L 248.0,90.3 L 242.0,102.6 L 238.0,115.0
-                 L 235.0,127.0 L 236.0,140.0 L 242.0,152.0 L 250.0,165.0 L 258.0,178.0
-                 L 263.0,188.0 L 267.0,198.5
-                 L 276.2,204.6 L 285.3,212.8 L 303.7,218.9 L 312.8,225.0 L 322.0,229.1
-                 L 331.2,233.2 L 340.3,235.2 L 349.5,237.2 L 358.7,239.3 L 367.8,239.3
+              d="M 168,16
+                 L 178,8 L 192,10 L 206,20 L 218,34 L 226,46
+                 L 236,44 L 252,42 L 268,48 L 282,58 L 290,72
+                 L 288,88 L 276,102 L 260,114 L 246,124
+                 L 232,132 L 220,142
+                 L 232,150 L 248,154 L 264,160 L 278,170
+                 L 288,182 L 298,194 L 310,206 L 324,216 L 340,226 L 352,236
+                 L 358.7,239.3 L 367.8,239.3
                  L 377.0,241.3 L 386.2,239.3 L 395.3,239.3 L 399.0,229.1 L 404.5,218.9
                  L 410.0,208.7 L 413.7,218.9 L 422.8,229.1 L 432.0,233.2 L 441.2,233.2
                  L 450.3,229.1 L 459.5,225.0 L 468.7,212.8 L 477.8,208.7 L 487.0,204.6
@@ -230,13 +232,15 @@ export default function GeospatialMap({ heatmap }: { heatmap: DashboardData["hea
                  L 56.2,331.1 L 47.0,325.0 L 37.8,310.7 L 34.2,300.5
                  L 37.8,290.3 L 47.0,280.1 L 56.2,259.7 L 65.3,249.5
                  L 83.7,218.9 L 92.8,208.7 L 102.0,198.5
-                 L 115.0,186.0 L 125.0,172.0 L 133.0,158.0 L 137.0,142.0
-                 L 133.0,126.0 L 128.0,108.0 L 130.0,90.0 L 136.0,72.0
-                 L 146.0,52.0 L 158.0,36.0 L 170.0,28.0 L 184.5,25.0 Z"
-              fill={hc ? "#111111" : "#e2e8f0"}
-              stroke={hc ? "#ffffff" : "#475569"}
-              strokeWidth="1.8"
+                 L 108,176 L 120,158 L 128,142
+                 L 122,128 L 110,116
+                 L 98,102 L 90,86 L 94,70 L 108,52
+                 L 124,36 L 144,22 L 158,14 L 168,16 Z"
+              fill={hc ? "#111111" : "#dbe4ee"}
+              stroke={hc ? "#ffffff" : "#334155"}
+              strokeWidth="1.7"
               strokeLinejoin="round"
+              strokeLinecap="round"
             />
 
             {/* Sub-region Reference Grid Lines */}
@@ -296,14 +300,14 @@ export default function GeospatialMap({ heatmap }: { heatmap: DashboardData["hea
               <div className="flex items-center gap-1.5 border-b pb-1.5">
                 <Plane className="h-4 w-4" style={{ color: "var(--accent)" }} />
                 <p className="text-xs font-bold" style={{ color: "var(--text-primary)" }}>
-                  {hoveredRoute.route_code} Corridor
+                  {hoveredRoute.route_code} {t("corridorWord")}
                 </p>
               </div>
               <div className="mt-2 space-y-1 text-xs" style={{ color: "var(--text-secondary)" }}>
-                <p>Median Fare: <span className="font-bold text-slate-900">₹{hoveredRoute.fare.toLocaleString("en-IN")}</span></p>
-                <p>7-Day Movement: <span className={hoveredRoute.changePct >= 0 ? "font-bold text-red-600" : "font-bold text-green-600"}>{hoveredRoute.changePct >= 0 ? "+" : ""}{hoveredRoute.changePct}%</span></p>
-                <p>Top Carrier: <span className="font-semibold text-slate-800">{hoveredRoute.carrier}</span></p>
-                <p>DGCA Traffic Share: <span className="font-mono font-bold text-slate-700">{hoveredRoute.share}</span></p>
+                <p>{t("medianFare")}: <span className="font-bold text-slate-900">₹{hoveredRoute.fare.toLocaleString("en-IN")}</span></p>
+                <p>{t("day7Movement")}: <span className={hoveredRoute.changePct >= 0 ? "font-bold text-red-600" : "font-bold text-green-600"}>{hoveredRoute.changePct >= 0 ? "+" : ""}{hoveredRoute.changePct}%</span></p>
+                <p>{t("topCarrier")}: <span className="font-semibold text-slate-800">{hoveredRoute.carrier}</span></p>
+                <p>{t("dgcaTrafficShare")}: <span className="font-mono font-bold text-slate-700">{hoveredRoute.share}</span></p>
               </div>
             </div>
           )}
@@ -314,7 +318,7 @@ export default function GeospatialMap({ heatmap }: { heatmap: DashboardData["hea
           <div>
             <h3 className="text-sm font-bold">{t("topMoversTitle")}</h3>
             <p className="mt-0.5 text-xs" style={{ color: "var(--text-secondary)" }}>
-              Corridor price shifts over trailing 7-day period
+              {t("topMoversSub")}
             </p>
 
             <ul className="mt-4 space-y-3">
@@ -322,7 +326,7 @@ export default function GeospatialMap({ heatmap }: { heatmap: DashboardData["hea
                 <li key={item.code} className="flex items-center justify-between border-b pb-2.5 text-xs" style={{ borderColor: "var(--card-border)" }}>
                   <div>
                     <p className="font-bold">{item.route}</p>
-                    <p className="text-[11px]" style={{ color: "var(--text-secondary)" }}>{item.fare} median fare</p>
+                    <p className="text-[11px]" style={{ color: "var(--text-secondary)" }}>{item.fare} {t("medianFareSuffix")}</p>
                   </div>
                   <span className={`inline-flex items-center gap-1 font-bold ${item.up ? "text-red-600" : "text-green-600"}`}>
                     {item.up ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />}
@@ -334,7 +338,7 @@ export default function GeospatialMap({ heatmap }: { heatmap: DashboardData["hea
           </div>
 
           <div className="mt-4 border-t pt-2 text-[10px]" style={{ borderColor: "var(--card-border)", color: "var(--text-secondary)" }}>
-            Real-time feed updated via DGCA high-density corridors
+            {t("realtimeFeed")}
           </div>
         </div>
       </div>

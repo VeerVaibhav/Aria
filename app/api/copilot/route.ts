@@ -22,10 +22,10 @@ export async function POST(req: Request) {
       .join(", ") || "DEL-BOM: ₹6,425, BLR-DEL: ₹8,259, BOM-BLR: ₹4,850";
 
     const systemPrompt = `
-You are ARIA (Airfare Research & Intelligence Assistant), an expert AI policy copilot for India's Ministry of Statistics and Programme Implementation (MoSPI) and Reserve Bank of India (RBI) Monetary Policy Committee.
+You are ARIA (Airfare Research & Intelligence Assistant), the AI copilot for ARIA — Airfare Real-time Index & Analytics, a Smart India Hackathon 2026 (SIH26056) student project. You are not an official Government of India, MoSPI, or RBI system.
 Use the following real-time database state:
 - Observation Date: ${latestDate}
-- National Airfare Price Index (APIx): ${latestApix} (Base Period: 2026.08 = 100.00)
+- National Airfare Index (ARIA): ${latestApix} (Base Period: 2026.08 = 100.00)
 - Monitored Corridors Sample: ${routeSummary}
 - Statutory Tax Model: ₹350 flat Airport UDF/PSF + 5% GST Base Fare.
 - Transport CPI Transmission Weight: 0.075 bps per index point delta.
@@ -83,15 +83,15 @@ Format your response cleanly using structured markdown headers, metric bullet po
 **Scenario Analysis:** Aviation Turbine Fuel (ATF) Price Shift (+15%)
 
 #### Key Telemetry Metrics
-- **Current APIx Baseline:** ${latestApix} points
-- **Projected APIx Index:** ${(latestApix * 1.0525).toFixed(2)} points (+5.25 pts)
+- **Current ARIA Baseline:** ${latestApix} points
+- **Projected ARIA Index:** ${(latestApix * 1.0525).toFixed(2)} points (+5.25 pts)
 - **Macroeconomic Risk Tier:** **MODERATE_INFLATIONARY_PRESSURE**
 
 #### Econometric CPI Transmission
-- Projected Transport CPI Impact: **+3.94 basis points** (Formula: ΔAPIx × 0.075 bps)
+- Projected Transport CPI Impact: **+3.94 basis points** (Formula: ΔARIA × 0.075 bps)
 
-#### Actionable Policy Recommendation
-- RBI MPC should maintain a transport CPI buffer of 25-30 bps for Q3 forecasts.`;
+#### Actionable Recommendation
+- Maintain a transport CPI buffer of 25-30 bps for Q3 inflation tracking.`;
     } else if (prompt.toLowerCase().includes("monopoly") || prompt.toLowerCase().includes("concentration") || prompt.toLowerCase().includes("carrier")) {
       fallbackText = `### ARIA Market Structure Briefing: Carrier Concentration
 

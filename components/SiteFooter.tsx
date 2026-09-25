@@ -14,6 +14,9 @@ export default function SiteFooter() {
             <p className="text-sm font-semibold" style={{ color: "var(--header-text)" }}>
               {t("ministryName")}
             </p>
+            <p className="mt-0.5 text-[11px] font-medium uppercase tracking-wider" style={{ color: "#FF9933" }}>
+              {t("nationalPortal")} • {t("subDivision")}
+            </p>
             <p className="mt-1 text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.78)" }}>
               {t("footerDisclaimers")}
             </p>

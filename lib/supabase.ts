@@ -19,7 +19,7 @@ export function getClient(): SupabaseClient {
   if (!url || !anonKey) {
     throw new Error(
       "Missing NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY. " +
-        "Configure .env.local — APIx does not run against mock data."
+        "Configure .env.local — ARIA does not run against mock data."
     );
   }
   client = createClient(url, anonKey, {

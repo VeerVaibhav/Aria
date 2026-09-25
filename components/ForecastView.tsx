@@ -40,14 +40,14 @@ export default function ForecastView({ data }: { data: DashboardData }) {
         <div className="flex items-center gap-2.5 border-b pb-3" style={{ borderColor: "var(--card-border)" }}>
           <TrendingUp className="h-5 w-5" style={{ color: "var(--accent)" }} aria-hidden />
           <div>
-            <h2 className="text-base font-bold">14-Day ML Inflation Projection Engine</h2>
+            <h2 className="text-base font-bold">{t("forecastTitle")}</h2>
             <p className="text-xs" style={{ color: "var(--text-secondary)" }}>
-              Autoregressive econometric forecasting with 95% confidence bounds
+              {t("forecastDesc")}
             </p>
           </div>
         </div>
 
-        <div className="mt-4 h-80 w-full" role="img" aria-label="14-Day Forecast Chart">
+        <div className="mt-4 h-80 w-full" role="img" aria-label={t("forecastTitle")}>
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart data={forecastData} margin={{ top: 8, right: 16, bottom: 4, left: 0 }}>
               <CartesianGrid stroke={pal.grid} strokeDasharray="3 3" />
@@ -66,14 +66,14 @@ export default function ForecastView({ data }: { data: DashboardData }) {
               <Area
                 type="monotone"
                 dataKey="bounds"
-                name="95% Confidence Band"
+                name={t("forecastBand")}
                 fill={hc ? "rgba(255,230,0,0.2)" : "rgba(11,60,93,0.15)"}
                 stroke="none"
               />
               <Line
                 type="monotone"
                 dataKey="projected"
-                name="ML Projected APIx Index"
+                name={t("forecastLine")}
                 stroke={pal.primary}
                 strokeWidth={2.5}
                 dot={{ r: 3 }}

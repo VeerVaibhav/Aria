@@ -10,7 +10,7 @@ export default function DataTrustConsole({
 }: {
   provenance: DashboardData["provenance"];
 }) {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
 
   const isLive = provenance.liveRows > 0;
@@ -23,16 +23,16 @@ export default function DataTrustConsole({
   };
 
   const dgcaWeights = [
-    { code: "DEL-BOM", name: "Delhi - Mumbai", share: "12.50%", weight: "0.1250", p0: "₹4,850" },
-    { code: "BOM-DEL", name: "Mumbai - Delhi", share: "12.50%", weight: "0.1250", p0: "₹4,800" },
-    { code: "BLR-DEL", name: "Bengaluru - Delhi", share: "8.20%", weight: "0.0820", p0: "₹5,200" },
-    { code: "DEL-BLR", name: "Delhi - Bengaluru", share: "8.20%", weight: "0.0820", p0: "₹5,150" },
-    { code: "BOM-BLR", name: "Mumbai - Bengaluru", share: "6.80%", weight: "0.0680", p0: "₹3,600" },
-    { code: "BLR-BOM", name: "Bengaluru - Mumbai", share: "6.80%", weight: "0.0680", p0: "₹3,650" },
-    { code: "DEL-CCU", name: "Delhi - Kolkata", share: "5.10%", weight: "0.0510", p0: "₹4,900" },
-    { code: "CCU-DEL", name: "Kolkata - Delhi", share: "5.10%", weight: "0.0510", p0: "₹4,950" },
-    { code: "MAA-DEL", name: "Chennai - Delhi", share: "4.70%", weight: "0.0470", p0: "₹5,100" },
-    { code: "DEL-MAA", name: "Delhi - Chennai", share: "4.70%", weight: "0.0470", p0: "₹5,050" },
+    { code: "DEL-BOM", name: t("corridorDelBom"), share: "12.50%", weight: "0.1250", p0: "₹4,850" },
+    { code: "BOM-DEL", name: t("corridorBomDel"), share: "12.50%", weight: "0.1250", p0: "₹4,800" },
+    { code: "BLR-DEL", name: t("corridorBlrDel"), share: "8.20%", weight: "0.0820", p0: "₹5,200" },
+    { code: "DEL-BLR", name: t("corridorDelBlr"), share: "8.20%", weight: "0.0820", p0: "₹5,150" },
+    { code: "BOM-BLR", name: t("corridorBomBlr"), share: "6.80%", weight: "0.0680", p0: "₹3,600" },
+    { code: "BLR-BOM", name: t("corridorBlrBom"), share: "6.80%", weight: "0.0680", p0: "₹3,650" },
+    { code: "DEL-CCU", name: t("corridorDelCcu"), share: "5.10%", weight: "0.0510", p0: "₹4,900" },
+    { code: "CCU-DEL", name: t("corridorCcuDel"), share: "5.10%", weight: "0.0510", p0: "₹4,950" },
+    { code: "MAA-DEL", name: t("corridorMaaDel"), share: "4.70%", weight: "0.0470", p0: "₹5,100" },
+    { code: "DEL-MAA", name: t("corridorDelMaa"), share: "4.70%", weight: "0.0470", p0: "₹5,050" },
   ];
 
   return (
@@ -44,7 +44,7 @@ export default function DataTrustConsole({
           <div>
             <h2 className="text-base font-bold">{t("trustTitle")}</h2>
             <p className="text-xs" style={{ color: "var(--text-secondary)" }}>
-              Official Statistical Verification & System Transparency Console
+              {t("trustSubtitle")}
             </p>
           </div>
         </div>
@@ -52,27 +52,27 @@ export default function DataTrustConsole({
         {/* Provenance Status Badges */}
         <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="border p-3" style={{ borderColor: "var(--card-border)", background: "var(--page-bg)" }}>
-            <p className="text-xs font-semibold" style={{ color: "var(--text-secondary)" }}>Active Ingestion Source</p>
+            <p className="text-xs font-semibold" style={{ color: "var(--text-secondary)" }}>{t("activeIngestionSource")}</p>
             <p className="mt-1 font-mono text-sm font-bold" style={{ color: "var(--text-primary)" }}>
-              {isLive ? "GoogleFlights-Live" : "DGCA-Historical"}
+              {isLive ? t("sourceLiveId") : t("sourceHistId")}
             </p>
           </div>
           <div className="border p-3" style={{ borderColor: "var(--card-border)", background: "var(--page-bg)" }}>
-            <p className="text-xs font-semibold" style={{ color: "var(--text-secondary)" }}>Total Ingested Quotes</p>
+            <p className="text-xs font-semibold" style={{ color: "var(--text-secondary)" }}>{t("totalIngestedQuotes")}</p>
             <p className="mt-1 font-mono text-sm font-bold" style={{ color: "var(--text-primary)" }}>
               {provenance.totalQuotes.toLocaleString("en-IN")}
             </p>
           </div>
           <div className="border p-3" style={{ borderColor: "var(--card-border)", background: "var(--page-bg)" }}>
-            <p className="text-xs font-semibold" style={{ color: "var(--text-secondary)" }}>Live Ingested Rows</p>
+            <p className="text-xs font-semibold" style={{ color: "var(--text-secondary)" }}>{t("liveIngestedRows")}</p>
             <p className="mt-1 font-mono text-sm font-bold" style={{ color: "var(--text-primary)" }}>
               {provenance.liveRows.toLocaleString("en-IN")}
             </p>
           </div>
           <div className="border p-3" style={{ borderColor: "var(--card-border)", background: "var(--page-bg)" }}>
-            <p className="text-xs font-semibold" style={{ color: "var(--text-secondary)" }}>Database Health Status</p>
+            <p className="text-xs font-semibold" style={{ color: "var(--text-secondary)" }}>{t("dbHealthStatus")}</p>
             <p className="mt-1 inline-flex items-center gap-1.5 font-mono text-sm font-bold" style={{ color: "var(--positive)" }}>
-              <CheckCircle2 className="h-4 w-4" aria-hidden /> Healthy (100%)
+              <CheckCircle2 className="h-4 w-4" aria-hidden /> {t("healthy")}
             </p>
           </div>
         </div>
@@ -86,7 +86,7 @@ export default function DataTrustConsole({
           </p>
           <p className="mt-2 text-3xl font-bold tabular-nums" style={{ color: "var(--positive)" }}>98.4%</p>
           <p className="mt-1 text-xs" style={{ color: "var(--text-secondary)" }}>
-            Cross-OTA quote alignment validation
+            {t("consensusSub")}
           </p>
         </div>
 
@@ -96,7 +96,7 @@ export default function DataTrustConsole({
           </p>
           <p className="mt-2 text-3xl font-bold tabular-nums" style={{ color: "var(--accent)" }}>0.0%</p>
           <p className="mt-1 text-xs" style={{ color: "var(--text-secondary)" }}>
-            Honesty Contract: Zero synthetic values generated
+            {t("imputationSub")}
           </p>
         </div>
 
@@ -108,7 +108,7 @@ export default function DataTrustConsole({
             aria-label DOM v2.1
           </p>
           <p className="mt-1 text-xs" style={{ color: "var(--text-secondary)" }}>
-            Accessibility-tree quote extraction active
+            {t("parserSub")}
           </p>
         </div>
       </div>
@@ -124,18 +124,18 @@ export default function DataTrustConsole({
       <div className="civic-card p-4">
         <h3 className="text-sm font-bold">{t("auditTitle")}</h3>
         <p className="mt-0.5 text-xs" style={{ color: "var(--text-secondary)" }}>
-          Official passenger traffic shares and base period reference fares (P₀) held in dgca_route_weights
+          {t("auditTableDesc")}
         </p>
 
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
               <tr className="border-b" style={{ borderColor: "var(--card-border)" }}>
-                <th className="py-2 px-3 font-semibold uppercase" style={{ color: "var(--text-secondary)" }}>Route Code</th>
-                <th className="py-2 px-3 font-semibold uppercase" style={{ color: "var(--text-secondary)" }}>Corridor Name</th>
-                <th className="py-2 px-3 font-semibold uppercase text-right" style={{ color: "var(--text-secondary)" }}>Passenger Share</th>
-                <th className="py-2 px-3 font-semibold uppercase text-right" style={{ color: "var(--text-secondary)" }}>Laspeyres Weight</th>
-                <th className="py-2 px-3 font-semibold uppercase text-right" style={{ color: "var(--text-secondary)" }}>Base Fare (P₀)</th>
+                <th className="py-2 px-3 font-semibold uppercase" style={{ color: "var(--text-secondary)" }}>{t("colRouteCode")}</th>
+                <th className="py-2 px-3 font-semibold uppercase" style={{ color: "var(--text-secondary)" }}>{t("colCorridorName")}</th>
+                <th className="py-2 px-3 font-semibold uppercase text-right" style={{ color: "var(--text-secondary)" }}>{t("colPassengerShare")}</th>
+                <th className="py-2 px-3 font-semibold uppercase text-right" style={{ color: "var(--text-secondary)" }}>{t("colLaspeyresWeight")}</th>
+                <th className="py-2 px-3 font-semibold uppercase text-right" style={{ color: "var(--text-secondary)" }}>{t("colBaseFareP0")}</th>
               </tr>
             </thead>
             <tbody>
@@ -173,12 +173,12 @@ export default function DataTrustConsole({
             {copied ? (
               <>
                 <Check className="h-3.5 w-3.5 text-green-400" />
-                <span>Copied!</span>
+                <span>{t("copied")}</span>
               </>
             ) : (
               <>
                 <Copy className="h-3.5 w-3.5" />
-                <span>Copy</span>
+                <span>{t("copy")}</span>
               </>
             )}
           </button>

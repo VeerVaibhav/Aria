@@ -7,9 +7,7 @@ import { useLanguage } from "@/lib/language";
 export default function TrustBadge({ provenance, baseDate, corridors }: { provenance: DashboardData["provenance"]; baseDate: string; corridors: number }) {
   const { t, lang } = useLanguage();
   const isLive = provenance.liveRows > 0;
-  const sourceLabel = isLive
-    ? "Data Source: Real-time Ingestion | Quality: Live"
-    : "Data Source: DGCA Historical Baseline | Quality: Calibrated";
+  const sourceLabel = isLive ? t("dataSourceLive") : t("dataSourceHist");
 
   const capture = provenance.latestCapture ? new Date(provenance.latestCapture) : null;
   const freshness = capture
@@ -37,13 +35,13 @@ export default function TrustBadge({ provenance, baseDate, corridors }: { proven
         <dl className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs sm:grid-cols-4">
           <div>
             <dt className="font-medium" style={{ color: "var(--text-secondary)" }}>
-              {lang === "hi" ? "कुल कोटेशन" : "Total quotes"}
+              {t("totalQuotes")}
             </dt>
             <dd className="font-semibold tabular-nums">{provenance.totalQuotes.toLocaleString("en-IN")}</dd>
           </div>
           <div>
             <dt className="font-medium" style={{ color: "var(--text-secondary)" }}>
-              {lang === "hi" ? "नवीनतम कैप्चर" : "Latest capture"}
+              {t("latestCapture")}
             </dt>
             <dd className="font-semibold tabular-nums">
               <span className="inline-flex items-center gap-1">
@@ -54,16 +52,16 @@ export default function TrustBadge({ provenance, baseDate, corridors }: { proven
           </div>
           <div>
             <dt className="font-medium" style={{ color: "var(--text-secondary)" }}>
-              {lang === "hi" ? "लाइव पंक्तियाँ" : "Live rows"}
+              {t("liveRows")}
             </dt>
             <dd className="font-semibold tabular-nums">{provenance.liveRows.toLocaleString("en-IN")}</dd>
           </div>
           <div>
             <dt className="font-medium" style={{ color: "var(--text-secondary)" }}>
-              {lang === "hi" ? "बेस अवधि" : "Base period"}
+              {t("basePeriod")}
             </dt>
             <dd className="font-semibold tabular-nums">
-              {baseDate} = 100.00 · {corridors} {lang === "hi" ? "मार्ग" : "routes"}
+              {baseDate} = 100.00 · {corridors} {t("routesWord")}
             </dd>
           </div>
         </dl>
@@ -73,7 +71,7 @@ export default function TrustBadge({ provenance, baseDate, corridors }: { proven
           {provenance.sourceCounts.map((s) => (
             <li key={s.source}>
               <span className="font-semibold" style={{ color: "var(--text-primary)" }}>{s.source}</span>:{" "}
-              {s.count.toLocaleString("en-IN")} rows
+              {s.count.toLocaleString("en-IN")} {t("rowsWord")}
             </li>
           ))}
         </ul>

@@ -77,7 +77,7 @@ export default function EconometricLab({ series }: { series: IndexPoint[] }) {
               <Line
                 type="monotone"
                 dataKey="laspeyres"
-                name="Laspeyres (DGCA Weighted Benchmark)"
+                name={t("legendLaspeyres")}
                 stroke={formulaColors.laspeyres}
                 strokeWidth={2.5}
                 dot={false}
@@ -86,7 +86,7 @@ export default function EconometricLab({ series }: { series: IndexPoint[] }) {
               <Line
                 type="monotone"
                 dataKey="jevons"
-                name="Jevons (Standard Geometric Mean)"
+                name={t("legendJevons")}
                 stroke={formulaColors.jevons}
                 strokeWidth={2}
                 dot={false}
@@ -95,7 +95,7 @@ export default function EconometricLab({ series }: { series: IndexPoint[] }) {
               <Line
                 type="monotone"
                 dataKey="carli"
-                name="Carli / Dutot (Arithmetic Relative)"
+                name={t("legendCarli")}
                 stroke={formulaColors.carli}
                 strokeWidth={2}
                 strokeDasharray="4 4"
@@ -105,7 +105,7 @@ export default function EconometricLab({ series }: { series: IndexPoint[] }) {
               <Line
                 type="monotone"
                 dataKey="fisher"
-                name="Fisher Ideal Index"
+                name={t("legendFisher")}
                 stroke={formulaColors.fisher}
                 strokeWidth={2}
                 strokeDasharray="2 2"

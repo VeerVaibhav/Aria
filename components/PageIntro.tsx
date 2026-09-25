@@ -17,7 +17,7 @@ export default function PageIntro() {
       </div>
       <a
         href="/api/v1/export/esankhyiki?format=csv"
-        download="mospi_esankhyiki_apix_bulletin.csv"
+        download="aria_index_bulletin.csv"
         className="inline-flex items-center gap-2 border px-4 py-2 text-sm font-semibold no-underline transition-none"
         style={{ borderColor: "var(--accent)", color: "var(--accent)", background: "var(--card-bg)" }}
       >

@@ -15,7 +15,7 @@ import { chartPalette, useHighContrast } from "@/lib/useHighContrast";
 import { useLanguage } from "@/lib/language";
 
 export default function BacktestChart({ backtest }: { backtest: DashboardData["backtest"] }) {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
   const hc = useHighContrast();
   const pal = chartPalette(hc);
 
@@ -79,9 +79,7 @@ export default function BacktestChart({ backtest }: { backtest: DashboardData["b
         </ResponsiveContainer>
       </div>
       <p className="mt-1 text-xs" style={{ color: "var(--text-secondary)" }}>
-        {lang === "hi"
-          ? "MAPE = गणना किए गए दैनिक सूचकांक और DGCA मासिक बेसलाइन संदर्भ के बीच औसत निरपेक्ष प्रतिशत त्रुटि।"
-          : "MAPE = mean absolute percentage error between the calculated daily index and the DGCA monthly baseline reference."}
+        {t("mapeFootnote")}
       </p>
     </div>
   );

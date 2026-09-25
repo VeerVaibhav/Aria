@@ -39,18 +39,18 @@ export default function HeroMetricCards({ data }: { data: DashboardData }) {
           </div>
           <div className="mt-3 flex items-baseline gap-2">
             <span className="text-4xl font-black tabular-nums tracking-tight text-white">{indexVal}</span>
-            <span className="text-sm font-bold text-amber-300">points</span>
+            <span className="text-sm font-bold text-amber-300">{t("points")}</span>
             <span className="inline-flex items-center gap-0.5 rounded bg-red-500/30 px-2 py-0.5 text-xs font-bold text-red-200 border border-red-400/40">
               <TrendingUp className="h-3 w-3 text-red-300" /> ▲ +7.3%
             </span>
           </div>
           <div className="mt-3 space-y-1 text-xs text-white/95">
-            <p className="font-medium">Base Period: {data.baseDate || "2026.08"} = 100.00</p>
-            <p className="font-medium">Superlative Fisher: 114.50 • Daily move: +11.0%</p>
+            <p className="font-medium">{t("basePeriodLine").replace("{date}", data.baseDate || "2026.08")}</p>
+            <p className="font-medium">{t("fisherDailyMove")}</p>
           </div>
         </div>
         <div className="mt-4 border-t border-white/20 pt-2 text-[10px] text-white/80 font-medium">
-          ILO / MoSPI CPI Manual (2012=100 Standard)
+          {t("fisherFoot")}
         </div>
       </div>
 
@@ -62,18 +62,18 @@ export default function HeroMetricCards({ data }: { data: DashboardData }) {
               {t("heroCard2Title")}
             </span>
             <span className="inline-flex items-center gap-0.5 rounded border border-red-500/30 bg-red-50 px-1.5 py-0.5 text-xs font-bold text-red-700">
-              ▲ +6.7% vs 7d
+              ▲ +6.7% {t("vs7d")}
             </span>
           </div>
           <div className="mt-3 flex items-baseline gap-1">
             <span className="text-3xl font-black tabular-nums tracking-tight">₹{fareVal}</span>
           </div>
           <p className="mt-2 text-xs" style={{ color: "var(--text-secondary)" }}>
-            Composite across 10 DGCA corridors × 5 advance horizons
+            {t("heroCard2Body")}
           </p>
         </div>
         <div className="mt-4 border-t pt-2 text-[10px]" style={{ borderColor: "var(--card-border)", color: "var(--text-secondary)" }}>
-          DGCA weight-averaged fare index input
+          {t("heroCard2Foot")}
         </div>
       </div>
 
@@ -108,18 +108,18 @@ export default function HeroMetricCards({ data }: { data: DashboardData }) {
 
             <div>
               <span className="inline-block rounded bg-red-100 px-2 py-0.5 text-[11px] font-bold text-red-800">
-                HIGH PRESSURE
+                {t("highPressure")}
               </span>
-              <p className="mt-1 text-[11px] font-semibold text-red-600">▲ 22.7 pts in 24h</p>
+              <p className="mt-1 text-[11px] font-semibold text-red-600">▲ 22.7 {t("ptsIn24h")}</p>
             </div>
           </div>
 
           <p className="mt-2 text-xs" style={{ color: "var(--text-secondary)" }}>
-            Intra-week price volatility dispersion: 31%
+            {t("intraWeekVol")}
           </p>
         </div>
         <div className="mt-3 border-t pt-2 text-[10px] font-bold text-amber-700" style={{ borderColor: "var(--card-border)" }}>
-          RBI Watch: MODERATE_INFLATIONARY_PRESSURE
+          {t("inflationWatch")}
         </div>
       </div>
 
@@ -158,17 +158,17 @@ export default function HeroMetricCards({ data }: { data: DashboardData }) {
 
             <div>
               <span className="inline-block rounded bg-emerald-100 px-2 py-0.5 text-[11px] font-bold text-emerald-800">
-                EXCELLENT
+                {t("excellent")}
               </span>
               <p className="mt-1 text-[10px]" style={{ color: "var(--text-secondary)" }}>
-                Coverage: 100% • Consensus: 96.5%
+                {t("coverageConsensus")}
               </p>
             </div>
           </div>
         </div>
 
         <div className="mt-4 border-t pt-2 text-[10px] font-mono" style={{ borderColor: "var(--card-border)", color: "var(--text-secondary)" }}>
-          SHA-256 hashed • {todayDate}
+          {t("hashedLabel")} • {todayDate}
         </div>
       </div>
     </div>

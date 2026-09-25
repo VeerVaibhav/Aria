@@ -5,7 +5,7 @@ import { AlertOctagon, AlertTriangle, CheckCircle2, Sliders } from "lucide-react
 import { useLanguage } from "@/lib/language";
 
 export default function PolicySimulator({ baseIndex }: { baseIndex: number }) {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
 
   // Slider States
   // ATF Price Shock: -20% to +30% (default: 0)
@@ -53,7 +53,7 @@ export default function PolicySimulator({ baseIndex }: { baseIndex: number }) {
             <div>
               <h2 className="text-base font-bold">{t("simTitle")}</h2>
               <p className="text-xs" style={{ color: "var(--text-secondary)" }}>
-                Client-side macroeconomic scenario analysis for RBI Monetary Policy & MoCA analysts
+                {t("simSubtitle")}
               </p>
             </div>
           </div>
@@ -63,7 +63,7 @@ export default function PolicySimulator({ baseIndex }: { baseIndex: number }) {
             className="border px-3 py-1 text-xs font-semibold uppercase tracking-wide hover:bg-slate-100"
             style={{ borderColor: "var(--card-border)", color: "var(--text-primary)" }}
           >
-            {lang === "hi" ? "रीसेट करें" : "Reset Parameters"}
+            {t("resetParams")}
           </button>
         </div>
 
@@ -90,9 +90,9 @@ export default function PolicySimulator({ baseIndex }: { baseIndex: number }) {
               className="h-2 w-full cursor-pointer rounded-lg bg-slate-200 accent-ashoka-navy"
             />
             <div className="flex justify-between text-[10px]" style={{ color: "var(--text-secondary)" }}>
-              <span>-20% (Softening)</span>
+              <span>{t("sliderSoftening")}</span>
               <span>0%</span>
-              <span>+30% (Spike)</span>
+              <span>{t("sliderSpike")}</span>
             </div>
           </div>
 
@@ -117,9 +117,9 @@ export default function PolicySimulator({ baseIndex }: { baseIndex: number }) {
               className="h-2 w-full cursor-pointer rounded-lg bg-slate-200 accent-ashoka-navy"
             />
             <div className="flex justify-between text-[10px]" style={{ color: "var(--text-secondary)" }}>
-              <span>-40% (Groundings)</span>
+              <span>{t("sliderGroundings")}</span>
               <span>-20%</span>
-              <span>0% (Full Ops)</span>
+              <span>{t("sliderFullOps")}</span>
             </div>
           </div>
 
@@ -144,9 +144,9 @@ export default function PolicySimulator({ baseIndex }: { baseIndex: number }) {
               className="h-2 w-full cursor-pointer rounded-lg bg-slate-200 accent-ashoka-navy"
             />
             <div className="flex justify-between text-[10px]" style={{ color: "var(--text-secondary)" }}>
-              <span>1.0x (Standard)</span>
+              <span>{t("sliderStandard")}</span>
               <span>1.75x</span>
-              <span>2.5x (Uncapped)</span>
+              <span>{t("sliderUncapped")}</span>
             </div>
           </div>
         </div>
@@ -157,18 +157,18 @@ export default function PolicySimulator({ baseIndex }: { baseIndex: number }) {
         {/* Metric Card 1: Base vs Simulated Index */}
         <div className="civic-card p-4">
           <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "var(--text-secondary)" }}>
-            Current Baseline Index
+            {t("currentBaseline")}
           </p>
           <p className="mt-2 text-3xl font-bold tabular-nums">{baseIndex.toFixed(2)}</p>
           <p className="mt-1 text-xs" style={{ color: "var(--text-secondary)" }}>
-            Base Month Reference (100.00)
+            {t("baseMonthRef")}
           </p>
         </div>
 
         {/* Metric Card 2: Simulated Index Delta */}
         <div className="civic-card p-4">
           <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: "var(--text-secondary)" }}>
-            Projected APIx Index
+            {t("projectedAriaIndex")}
           </p>
           <p className="mt-2 text-3xl font-bold tabular-nums">
             {simulatedIndex.toFixed(2)}{" "}
@@ -177,7 +177,7 @@ export default function PolicySimulator({ baseIndex }: { baseIndex: number }) {
             </span>
           </p>
           <p className="mt-1 text-xs" style={{ color: "var(--text-secondary)" }}>
-            Under simulated macro shocks
+            {t("underShocks")}
           </p>
         </div>
 
@@ -190,7 +190,7 @@ export default function PolicySimulator({ baseIndex }: { baseIndex: number }) {
             {cpiImpactBps >= 0 ? "+" : ""}{cpiImpactBps.toFixed(2)} <span className="text-lg">bps</span>
           </p>
           <p className="mt-1 text-xs" style={{ color: "var(--text-secondary)" }}>
-            Transmission: ΔIndex × 0.075 bps
+            {t("transmissionFormula")}
           </p>
         </div>
       </div>
@@ -221,10 +221,10 @@ export default function PolicySimulator({ baseIndex }: { baseIndex: number }) {
             </h3>
             <p className="mt-1 text-xs leading-relaxed" style={{ color: "var(--text-secondary)" }}>
               {riskTier === "critical"
-                ? "Simulated supply-side aviation shocks indicate critical transport inflation transmission exceeding 25 basis points. Monetary policy alert recommended for RBI MPC review."
+                ? t("riskBodyCritical")
                 : riskTier === "moderate"
-                ? "Moderate inflation shift detected. Airfare price elasticity is transmitting 10-25 basis points of momentum into the transport CPI sub-index."
-                : "Airfare pricing dynamics remain within stable macroeconomic bounds with sub-10 basis point transport CPI transmission."}
+                ? t("riskBodyModerate")
+                : t("riskBodyStable")}
             </p>
           </div>
         </div>

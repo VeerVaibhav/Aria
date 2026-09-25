@@ -27,7 +27,7 @@ export default function ElasticityChart({ elasticity }: { elasticity: DashboardD
   const routeKeys = Object.keys(data[0] ?? {}).filter((k) => k !== "lead_time_days" && k !== "national");
 
   return (
-    <div className="h-80 w-full" role="img" aria-label="Lead-time price elasticity curve">
+    <div className="h-80 w-full" role="img" aria-label={t("chartElasticityTitle")}>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 8, right: 16, bottom: 4, left: 8 }}>
           <CartesianGrid stroke={pal.grid} strokeDasharray="3 3" />
@@ -51,7 +51,7 @@ export default function ElasticityChart({ elasticity }: { elasticity: DashboardD
               background: hc ? "#000000" : "#ffffff",
               color: hc ? "#ffffff" : "#0f172a",
             }}
-            labelFormatter={(v: number) => `Window T+${v}`}
+            labelFormatter={(v: number) => t("windowLabel").replace("{n}", String(v))}
             formatter={(value: number, name: string) => [`₹${Number(value).toLocaleString("en-IN")}`, name]}
           />
           <Legend wrapperStyle={{ fontSize: 11 }} />

@@ -15,7 +15,7 @@ function fareColor(fare: number, min: number, max: number): string {
 }
 
 export default function SectorHeatmap({ heatmap }: { heatmap: DashboardData["heatmap"] }) {
-  const { lang, t } = useLanguage();
+  const { t } = useLanguage();
   const [selectedRoute, setSelectedRoute] = useState<string>("ALL");
 
   const availableRoutes = heatmap.map((r) => r.route_code);
@@ -55,12 +55,12 @@ export default function SectorHeatmap({ heatmap }: { heatmap: DashboardData["hea
       <div className="overflow-x-auto">
         <table className="w-full min-w-[560px] border-collapse text-sm">
           <caption className="sr-only">
-            {lang === "hi" ? "मार्ग और बुकिंग विंडो के अनुसार औसत इकोनॉमी किराया" : "Average economy fare by corridor and advance-purchase window"}
+            {t("heatmapCaption")}
           </caption>
           <thead>
             <tr>
               <th scope="col" className="border-b px-3 py-2 text-left text-xs font-semibold uppercase tracking-wide" style={{ color: "var(--text-secondary)", borderColor: "var(--card-border)" }}>
-                {lang === "hi" ? "मार्ग" : "Corridor"}
+                {t("colCorridor")}
               </th>
               {leads.map((lead) => (
                 <th key={lead} scope="col" className="border-b px-3 py-2 text-center text-xs font-semibold" style={{ color: "var(--text-secondary)", borderColor: "var(--card-border)" }}>
@@ -86,8 +86,8 @@ export default function SectorHeatmap({ heatmap }: { heatmap: DashboardData["hea
                     }}
                     title={
                       cell.fare != null
-                        ? `${row.route_code} ${WINDOW_LABELS[cell.lead]}: ₹${cell.fare.toLocaleString("en-IN")} (${cell.samples} quotes)`
-                        : `${row.route_code} ${WINDOW_LABELS[cell.lead]}: no quotes`
+                        ? `${row.route_code} ${WINDOW_LABELS[cell.lead]}: ₹${cell.fare.toLocaleString("en-IN")} (${cell.samples} ${t("heatmapQuotes")})`
+                        : `${row.route_code} ${WINDOW_LABELS[cell.lead]}: ${t("heatmapNoQuotes")}`
                     }
                   >
                     {cell.fare != null ? `₹${Math.round(cell.fare).toLocaleString("en-IN")}` : "—"}

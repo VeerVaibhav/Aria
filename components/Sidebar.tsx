@@ -3,8 +3,6 @@
 import {
   Activity,
   AlertTriangle,
-  BarChart2,
-  Bot,
   Building2,
   Calculator,
   Calendar,
@@ -20,10 +18,9 @@ import { useLanguage } from "@/lib/language";
 type Props = {
   activeView: string;
   onSelectView: (view: string) => void;
-  onOpenCopilot: () => void;
 };
 
-export default function Sidebar({ activeView, onSelectView, onOpenCopilot }: Props) {
+export default function Sidebar({ activeView, onSelectView }: Props) {
   const { t } = useLanguage();
 
   const navSections = [
@@ -51,7 +48,6 @@ export default function Sidebar({ activeView, onSelectView, onOpenCopilot }: Pro
         { id: "anomalies", labelKey: "navAnomalies", icon: AlertTriangle },
         { id: "simulator", labelKey: "navSimulator", icon: Sliders },
         { id: "trust", labelKey: "navTrust", icon: ShieldCheck },
-        { id: "copilot", labelKey: "navCopilot", icon: Bot, isAction: true },
       ],
     },
   ];
@@ -73,18 +69,10 @@ export default function Sidebar({ activeView, onSelectView, onOpenCopilot }: Pro
                     <li key={item.id}>
                       <button
                         type="button"
-                        onClick={() => {
-                          if (item.isAction) {
-                            onOpenCopilot();
-                          } else {
-                            onSelectView(item.id);
-                          }
-                        }}
+                        onClick={() => onSelectView(item.id)}
                         className={`flex w-full items-center justify-between px-3 py-2 text-xs font-semibold transition-none border ${
                           isActive
                             ? "bg-ashoka-navy text-white border-ashoka-navy"
-                            : item.isAction
-                            ? "bg-amber-500/10 text-amber-600 border-amber-500/30 hover:bg-amber-500/20"
                             : "border-transparent text-slate-700 hover:bg-slate-100"
                         }`}
                         style={
@@ -97,11 +85,6 @@ export default function Sidebar({ activeView, onSelectView, onOpenCopilot }: Pro
                           <Icon className="h-4 w-4 shrink-0" aria-hidden />
                           <span>{t(item.labelKey as any)}</span>
                         </div>
-                        {item.isAction && (
-                          <span className="rounded bg-amber-500 px-1.5 py-0.5 text-[9px] font-extrabold uppercase text-slate-950">
-                            AI
-                          </span>
-                        )}
                       </button>
                     </li>
                   );
@@ -114,9 +97,9 @@ export default function Sidebar({ activeView, onSelectView, onOpenCopilot }: Pro
         {/* Institutional Footer info */}
         <div className="border-t pt-3 text-[10px]" style={{ borderColor: "var(--card-border)", color: "var(--text-secondary)" }}>
           <p className="font-bold uppercase" style={{ color: "var(--text-primary)" }}>
-            MoSPI APIx System v2.4
+            {t("sidebarSystem")}
           </p>
-          <p className="mt-0.5">DGCA Corridors • ILO Standard</p>
+          <p className="mt-0.5">{t("sidebarMeta")}</p>
         </div>
       </div>
     </aside>

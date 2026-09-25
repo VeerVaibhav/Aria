@@ -94,3 +94,18 @@ body {
   left: 0.5rem;
   top: 0.5rem;
 }
+
+@keyframes aria-fab-in {
+  from {
+    transform: scale(0.7) translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.aria-fab {
+  animation: aria-fab-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}

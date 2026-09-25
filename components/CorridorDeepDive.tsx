@@ -138,7 +138,7 @@ export default function CorridorDeepDive({
           >
             {HORIZONS.map((h) => (
               <option key={h} value={h}>
-                T+{h} ({h === 1 ? "Immediate" : h === 45 ? "Discount Tier" : "Advance"})
+                T+{h} ({h === 1 ? t("horizonImmediate") : h === 45 ? t("horizonDiscount") : t("horizonAdvance")})
               </option>
             ))}
           </select>
@@ -148,7 +148,7 @@ export default function CorridorDeepDive({
           <span className="font-semibold" style={{ color: "var(--text-primary)" }}>
             {selectedRoute}
           </span>{" "}
-          · T+{selectedHorizon} Horizon
+          · T+{selectedHorizon} {t("horizonWord")}
         </div>
       </div>
 
@@ -158,7 +158,7 @@ export default function CorridorDeepDive({
         <div className="civic-card p-4">
           <h2 className="text-sm font-bold">{t("carrierComparison")}</h2>
           <p className="mt-0.5 text-xs" style={{ color: "var(--text-secondary)" }}>
-            Average total fare comparison across key carriers on {selectedRoute} (T+{selectedHorizon})
+            {t("carrierCompareDesc").replace("{route}", selectedRoute).replace("{horizon}", String(selectedHorizon))}
           </p>
 
           <div className="mt-4 h-72 w-full" role="img" aria-label={t("carrierComparison")}>
@@ -180,9 +180,9 @@ export default function CorridorDeepDive({
                     background: hc ? "#000000" : "#ffffff",
                     color: hc ? "#ffffff" : "#0f172a",
                   }}
-                  formatter={(v: number) => [`₹${v.toLocaleString("en-IN")}`, "Total Fare"]}
+                  formatter={(v: number) => [`₹${v.toLocaleString("en-IN")}`, t("totalFare")]}
                 />
-                <Bar dataKey="total_fare" name="Average Fare" fill={barColors.fare} barSize={40} isAnimationActive={false} />
+                <Bar dataKey="total_fare" name={t("averageFare")} fill={barColors.fare} barSize={40} isAnimationActive={false} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -192,7 +192,7 @@ export default function CorridorDeepDive({
         <div className="civic-card p-4">
           <h2 className="text-sm font-bold">{t("costDecomposition")}</h2>
           <p className="mt-0.5 text-xs" style={{ color: "var(--text-secondary)" }}>
-            Statutory breakdown: Airport UDF/PSF (₹350 flat) + 5% GST Base Fare
+            {t("costDecompDesc")}
           </p>
 
           <div className="mt-4 h-72 w-full" role="img" aria-label={t("costDecomposition")}>

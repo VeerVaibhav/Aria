@@ -7,7 +7,7 @@ import { useLanguage } from "@/lib/language";
 type Props = { data: DashboardData };
 
 function ChangeBadge({ value }: { value: number | null }) {
-  const { lang } = useLanguage();
+  const { t } = useLanguage();
   if (value == null) return <span className="text-sm" style={{ color: "var(--text-secondary)" }}>—</span>;
   const up = value >= 0;
   const Icon = up ? TrendingUp : TrendingDown;
@@ -16,7 +16,7 @@ function ChangeBadge({ value }: { value: number | null }) {
     <span className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color }}>
       <Icon className="h-4 w-4" aria-hidden />
       {up ? "+" : ""}
-      {value.toFixed(2)} {lang === "hi" ? "अंक" : "pts"}
+      {value.toFixed(2)} {t("ptsWord")}
     </span>
   );
 }
@@ -57,7 +57,7 @@ export default function KpiTiles({ data }: Props) {
       value: data.medianFareT7 != null ? `₹ ${fmt(data.medianFareT7, 0)}` : "—",
       extra: (
         <span className="text-xs" style={{ color: "var(--text-secondary)" }}>
-          {lang === "hi" ? `अवलोकन तिथि: ${data.latestDate}` : `Observation date: ${data.latestDate}`}
+          {t("observationDate").replace("{date}", data.latestDate)}
         </span>
       ),
     },
@@ -76,7 +76,7 @@ export default function KpiTiles({ data }: Props) {
         </ul>
       ) : (
         <span className="text-xs" style={{ color: "var(--positive)" }}>
-          {lang === "hi" ? "कोई >2.5σ वृद्धि नहीं" : "No >2.5σ fare spikes detected"}
+          {t("noSurge")}
         </span>
       ),
     },
