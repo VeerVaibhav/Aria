@@ -79,6 +79,22 @@ A robust, enterprise-grade intelligence platform designed to measure, explain, f
 * `/scripts` - Database schema deployment and historical seed scripts
 * `/worker` - Python-based pricing scraper engine (`scraper.py`)
 
+## 📝 Changelog
+
+### [Latest] — 2026-09-25 · VeerVaibhav
+
+#### 🐛 Bug Fixes
+- **Fixed Heatmap**: Resolved rendering issues in the Sector Heatmap component; data now displays correctly across all corridors and booking windows.
+- **Fixed Hindi Translation**: Corrected broken and missing localization strings in the `i18n` module — the full dashboard now renders accurately in Hindi (हिन्दी).
+
+#### ✨ Improvements
+- **Improved UI**: Polished visual consistency across multiple components including the Sidebar, Hero Metric Cards, KPI Tiles, Page Intro, Site Header/Footer, and Trust Badge. Improved spacing, typography, and responsiveness.
+
+#### 🔧 Minor Fixes
+- **Web Scraping Script**: Made minor fixes to `worker/scraper.py` for more robust and reliable airfare data ingestion.
+
+---
+
 ## 📜 License
 
 This project is intended for demonstration and analytical usage. All geospatial representations are illustrative approximations for dashboard telemetry.
