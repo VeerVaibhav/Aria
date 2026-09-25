@@ -47,7 +47,7 @@ def insert_quotes(cur, rows):
 
 
 def main() -> int:
-    env = load_env(ROOT / ".env.local")
+    env = load_env(ROOT / ".env")
     conn = psycopg2.connect(
         host=env["SUPABASE_DB_HOST"], port=env["SUPABASE_DB_PORT"],
         dbname=env["SUPABASE_DB_NAME"], user=env["SUPABASE_DB_USER"],

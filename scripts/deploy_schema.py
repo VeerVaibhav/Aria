@@ -4,7 +4,7 @@ APIx Phase 1 — Deploy SCHEMA.sql to Supabase and verify the index engine.
 Usage:
     python scripts/deploy_schema.py
 
-Reads credentials from .env.local (never hardcode them here).
+Reads credentials from .env (never hardcode them here).
 Idempotent: SCHEMA.sql uses IF NOT EXISTS / OR REPLACE throughout.
 """
 
@@ -14,7 +14,7 @@ from pathlib import Path
 import psycopg2
 
 ROOT = Path(__file__).resolve().parent.parent
-ENV_FILE = ROOT / ".env.local"
+ENV_FILE = ROOT / ".env"
 SCHEMA_FILE = ROOT / "SCHEMA.sql"
 
 

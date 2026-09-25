@@ -247,7 +247,7 @@ async def run(args) -> int:
         print("DRY RUN — nothing inserted.")
         return 0
 
-    env = load_env(ROOT / ".env.local")
+    env = load_env(ROOT / ".env")
     conn = connect(env)
     try:
         with conn.cursor() as cur:
